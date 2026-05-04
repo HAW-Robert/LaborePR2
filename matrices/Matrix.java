@@ -7,11 +7,17 @@ package matrices;
 
 public class Matrix{
   //Das Feld coefficients ist das Array welches gefüllt / Transponiert wird 
+private int rows;
+private int cols;
 private double [][] coefficients ;
 
 //Konstruktors
 public Matrix(int rows, int cols){ // Konstruktor sagt wioe groß die matrix ist. Der setter sagt was in der Matrix steht 
-coefficients = new double[rows][cols];
+  this.rows = rows;
+  this.cols = cols;
+  //Objekt wird erstellt vom Typ Double 2D array
+  //This meint das Feld der klasse . ohne this wäre der parameter gemeint 
+this.coefficients = new double[this.rows][this.cols];
 }
 // Copy Konstruktor 
 public Matrix(Matrix anotherMatrix){ // Eine durch diesen Konstruktor erschaffene Kopie wird nicht durch veränderung des Originals verändert 
@@ -37,7 +43,7 @@ public int getCols(){
   }
   return 0;// Falls keine Zeilen vorhanden
 }
-public double get(int row, int col){ // Return wert double , da inhalt matrix double ist.
+public double getValue(int row, int col){ // Return wert double , da inhalt matrix double ist.
   return coefficients[row][col];
 }
 public void set(int row, int col, double value){ // Hier können werte in die matrix eingetragen werden 
@@ -52,8 +58,9 @@ public Matrix transpose(){
   Matrix transMatrix = new Matrix(rows, cols); // transMatrix ist ein neues Objekt der Klasse Matrix. Seine werte sind aber im Feld coefficients gespeichert 
   for(int i =0; i < rows; i++){                 // transMatrix ist garkein Array . coefficents ist das array . 
     for(int j =0; j< cols ; j++){
-      transMatrix.coefficients[i][j] = this.coefficients[j][i]; // Hier steht : die werte des arrays welches zum objekt transMatrix gehören werden angesprochen. 
-                                                                // transMatrix.coefficients bedeutet das ich auf das Feld coefficients des Matrix Objekts transMatrix zugreife         
+      transMatrix.coefficients[i][j] = this.coefficients[j][i]; 
+  // Hier steht : die werte des arrays welches zum objekt transMatrix gehören werden angesprochen. 
+  // transMatrix.coefficients bedeutet das ich auf das Feld coefficients des Matrix Objekts transMatrix zugreife         
     }
   }
   return transMatrix;
@@ -64,12 +71,15 @@ public static boolean multipliable(Matrix A, Matrix B){
   return A.getCols() == B.getRows() ;
   
 }
+//Diese Methode ist Static da sie nicht an ein Objekt gebunden ist. Sie ist objekt unabhängig . Ich könnte jede beliebigen Matrizen damit multiplizieren
+ //Wenn die methode nicht Static wäre müsste sie an eine Matrix gebunden sein z.B Matrix A * beliebige Matrix. Aber Matrix A wäre dann fest mit der Methode verbunden.
 public static Matrix multiply(Matrix A, Matrix B){
 
   if(multipliable(A, B)){
     // Informationen benötigt für Schleifenrechnung
     int cols = B.getCols();
     int rows = A.getRows();
+    // 
     int common = A.getCols();
     //Neue Matrix wird Erstellt um ergebnisse darin zu speichern
     Matrix resultMatrix = new Matrix(rows, cols);
@@ -79,6 +89,9 @@ public static Matrix multiply(Matrix A, Matrix B){
 
         for(int k =0; k < common; k++){
           // .coefficients ist nötig um die arrays aufzurufen 
+          //vom Objekt resultMatrix wird das Feld coefficients aufgerufen und gefüllt 
+          //A liefert die Zeile [i][k] || B liefert die Spalte [k][j]
+          // K verbindet das in der Rechnung 
          resultMatrix.coefficients[i][j] += A.coefficients[i][k] * B.coefficients[k][j];
         }
       }
