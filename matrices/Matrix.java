@@ -13,6 +13,7 @@ private double [][] coefficients ;
 public Matrix(int rows, int cols){ // Konstruktor sagt wioe groß die matrix ist. Der setter sagt was in der Matrix steht 
 coefficients = new double[rows][cols];
 }
+// Copy Konstruktor 
 public Matrix(Matrix anotherMatrix){ // Eine durch diesen Konstruktor erschaffene Kopie wird nicht durch veränderung des Originals verändert 
     int rows = anotherMatrix.coefficients.length; //Zeilen = Länge der Matrix "coefficients"
     int cols = anotherMatrix.coefficients[0].length;// Spalten = anzahl SPalten "coefficients"
