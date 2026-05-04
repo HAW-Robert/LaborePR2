@@ -57,7 +57,35 @@ public Matrix transpose(){
     }
   }
   return transMatrix;
-
 }
+//A muss so viele Spalten haben wie B zeilen hat.
+public static boolean multipliable(Matrix A, Matrix B){
+  
+  return A.getCols() == B.getRows() ;
+  
+}
+public static Matrix multiply(Matrix A, Matrix B){
 
+  if(multipliable(A, B)){
+    // Informationen benötigt für Schleifenrechnung
+    int cols = B.getCols();
+    int rows = A.getRows();
+    int common = A.getCols();
+    //Neue Matrix wird Erstellt um ergebnisse darin zu speichern
+    Matrix resultMatrix = new Matrix(rows, cols);
+    //Schleifen gehen jedes "Kästchen" der arrays durch
+    for(int i =0; i < rows ; i ++){
+      for(int j =0; j < cols; j++){
+
+        for(int k =0; k < common; k++){
+          // .coefficients ist nötig um die arrays aufzurufen 
+         resultMatrix.coefficients[i][j] += A.coefficients[i][k] * B.coefficients[k][j];
+        }
+      }
+    }
+    return resultMatrix;
+  }else
+    {return null;}
+  }
+  
 }
