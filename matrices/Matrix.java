@@ -87,5 +87,5 @@ public static Matrix multiply(Matrix A, Matrix B){
   }else
     {return null;}
   }
-  
+
 }
