@@ -10,7 +10,7 @@ public class Buffer{
     //Konstruktor
 public Buffer(int buffersize){
     this.size = 0;
-    this.first = 0;
+    this.first = 1; //Erstes Objekt wird wegen der Schleifenstruktur immer auf Index 1 gepackt
     this.last = 0;
 this.elements = new Object[buffersize];
 }
@@ -41,7 +41,7 @@ public void put(Object object){     //Ein Objekt wird der Warteschlange hinzugef
 public int getSize(){
     return size;
 }
-public int getBufferSize(){
+public int getBuffersize(){
     return elements.length;
 }
 
