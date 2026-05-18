@@ -10,7 +10,7 @@ public class Buffer{
     //Konstruktor
 public Buffer(int buffersize){
     this.size = 0;
-    this.first = 1; //Erstes Objekt wird wegen der Schleifenstruktur immer auf Index 1 gepackt
+    this.first = 1; //Erstes Objekt wird wegen meiner Schleifenstruktur immer auf Index 1 gepackt
     this.last = 0;
 this.elements = new Object[buffersize];
 }
