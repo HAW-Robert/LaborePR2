@@ -1,5 +1,6 @@
 package Buffer;
-
+//Buffer startet auf zwei / muss min 25% gefüllt sein/ buffer voll und es kommt noch ein dazu wird größe verdoppelt / sind weniger als 25% der plätze gefüllt wird die größe halbiert
+//Array muss iterierbar sein
 public class Buffer{
     //attribute
     private int size; //Wie viele Plätze sind gerade belegt?
