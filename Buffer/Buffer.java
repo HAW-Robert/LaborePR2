@@ -9,11 +9,11 @@ public class Buffer{
     private Object[] elements;// "elements" ist das Array vom typ Object welches unser Ringpuffer sein wird.
 
     //Konstruktor
-public Buffer(int buffersize){
+public Buffer(){
     this.size = 0;
     this.first = 1; //Erstes Objekt wird wegen meiner Schleifenstruktur immer auf Index 1 gepackt
     this.last = 0;
-this.elements = new Object[buffersize];
+this.elements = new Object[2];
 }
     //Methoden
 
@@ -25,12 +25,14 @@ public Object get(){   //Das als erstes gekommene Object wird aus der Wartescvhl
         this.first+=1;
     }
     this.size-=1;
+   if (size*4 < elements.length) adaptLength(elements.length/2);
 return leaver;
 }
 public void put(Object object){     //Ein Objekt wird der Warteschlange hinzugefügt//  Gehe normalerweise einen Platz weiter.Wenn du am Ende angekommen bist springe wieder an den Anfang.
-    int m;
+    int m = 0;
+    if (size==elements.length) adaptLength(elements.length*2);
     if(last+1 >= elements.length){// Prüfung ob last+1 das array sprengen würde 
-        m = 0; // Falls ja
+        m=0;
     }else{
         m = last +1; // Falls nein
     }
@@ -45,6 +47,24 @@ public int getSize(){
 public int getBuffersize(){
     return elements.length;
 }
+//Wenn false zurückgegeben wird muss das Array verkleinert werden
+//Wenn true zurückgegeben wird muss das Array vergrößert werden
+
+public void adaptLength(int newSize){
+   
+        Object[] kleinerBuffer = new Object[newSize];
+        for(int i = 0; i <size; i++){
+            kleinerBuffer[i] = elements[(i+first)%elements.length];
+        }
+        this.elements = kleinerBuffer;
+        
+        first =0;
+        last = size-1;
+   
+}  
+    
+
+    
 
 
 
