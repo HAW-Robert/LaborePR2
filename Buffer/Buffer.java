@@ -1,13 +1,14 @@
 package Buffer;
 //Buffer startet auf zwei / muss min 25% gefüllt sein/ buffer voll und es kommt noch ein dazu wird größe verdoppelt / sind weniger als 25% der plätze gefüllt wird die größe halbiert
 //Array muss iterierbar sein
-public class Buffer{
+import java.util.Iterator;
+public class Buffer implements Iterable{
     //attribute
     private int size; //Wie viele Plätze sind gerade belegt?
     private int first;// Index des ersten Objekts
     private int last;//Index des letzten Objekts
     private Object[] elements;// "elements" ist das Array vom typ Object welches unser Ringpuffer sein wird.
-
+    
     //Konstruktor
 public Buffer(){
     this.size = 0;
@@ -62,12 +63,30 @@ public void adaptLength(int newSize){
         last = size-1;
    
 }  
-    
+ @Override
+    public Iterator<Object> iterator() {
 
-    
+        return new Iterator<Object>() {
 
+            private int count = 0;
+            private int currentIndex = first;
 
+            @Override
+            public boolean hasNext() {
+                return count < size;
+            }
 
+            @Override
+            public Object next() {
 
+                Object obj = elements[currentIndex];
 
+                currentIndex = (currentIndex + 1) % elements.length;
+
+                count++;
+
+                return obj;
+            }
+        };
+    }
 }
