@@ -48,8 +48,6 @@ public int getSize(){
 public int getBuffersize(){
     return elements.length;
 }
-//Wenn false zurückgegeben wird muss das Array verkleinert werden
-//Wenn true zurückgegeben wird muss das Array vergrößert werden
 
 public void adaptLength(int newSize){
    
