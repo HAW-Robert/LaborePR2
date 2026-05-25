@@ -50,7 +50,9 @@ public int getBuffersize(){
 }
 
 public void adaptLength(int newSize){
-   
+        if(newSize < 2){
+            newSize = 2;
+        }
         Object[] kleinerBuffer = new Object[newSize];
         for(int i = 0; i <size; i++){
             kleinerBuffer[i] = elements[(i+first)%elements.length];
