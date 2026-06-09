@@ -64,9 +64,9 @@ public abstract class Function {
     public static Function[] showTheseFunctions() {
         return new Function[] { 
             // 1 + 2x -1 x^2
-            new Polynomial(1,2,-1),
+           // new Polynomial(1,2,-1),
             // cos(x)
-            new TrigonometricFunction(Trigonometric.COSINE),
+            //new TrigonometricFunction(Trigonometric.COSINE),
             /* 
             // tan(x)
              new TrigonometricFunction(Trigonometric.TANGENT),

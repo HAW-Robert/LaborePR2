@@ -3,7 +3,7 @@ package labs.lab2.functions;
 
 
 
-public class Polynomial {
+public class Polynomial extends Function{
 
 	private double[] coefficients; 
 
@@ -27,6 +27,52 @@ public class Polynomial {
 		normalize();
 	}
 
+    public  boolean isDefinedFor(double x){
+        return true;
+    }
+
+    //public  double evaluate(double x){}
+
+    
+       @Override
+public String functionTerm(String x) {
+    //String wird gespeichert 
+    String result = "";
+
+    for (int i = 0; i < coefficients.length; i++) {
+        // wenn der Koeffizient 0 ist -> überspringen
+        if (coefficients[i] == 0) {
+            continue;
+        }
+        // fügt erstmal einfach die Zahl ein
+        result += coefficients[i];
+
+        if (i > 0) {
+            //nach der konstanten kommmen die x terme , welche mit einem exponenten i versehen werden
+            result += "*" + x + "^" + i;
+        }
+        //setzt + zwischen (außer beim letzten)
+        if (i < coefficients.length - 1) {
+            result += " + ";
+        }
+    }
+    //fertiger string wird ausgegeben 
+    return result;
+}
+    
+
+    public Function derivative(){
+        //Speicherort
+        double[] Ableitung;
+        //Ableitung ist 1 kleiner da konstante wegfällt
+       Ableitung = new double[coefficients.length-1];
+        //Schleife multipliziert mit exponent und kopiert ins neue array (anpassung des exponent passiert bei functionTerm durch die hier vorgenommenne verschiebung)
+        for(int i = 0; i < coefficients.length-1 ; i++){
+            Ableitung[i] = coefficients[i+1] * (i+1);
+        }
+        //Typ Function muss zurück gegeben werden 
+        return new Polynomial(Ableitung);
+    }
 	
 	public double evaluate(double x) {
 		double result =0.0;
