@@ -7,10 +7,9 @@ public PersonView(Person personToShow){
     //Mit super wird hier der JFrame konstruktor aufgerufen 
     super("Personal Infos");
 
-    //Neues objekt der klasse label erstellen , dabei wird der Konstruktor von JLabel aufgerufen. Dieser besteht mindestens aus dem Text(Inhalt) und dem centering man könnte auch noch ein icon hinzufügen 
-    JLabel label = new JLabel(personToShow.getAdress()+ " " +personToShow.getTitle()+ " "+personToShow.getGivenName()+ " "+personToShow.getSurname(), JLabel.CENTER);
-
-    add(label);
+   PersonPanel panel = new PersonPanel(personToShow);
+   add(panel);
+   
 
     setDefaultCloseOperation(EXIT_ON_CLOSE); 
 
