@@ -23,5 +23,7 @@ public PersonView(Person personToShow){
 public static void main(String arg[]){
     Person Tosch = new Person("Herr", "Dr.","Peter","Tosch");
     PersonView view = new PersonView(Tosch);
+    PersonCtrl ctrl = new PersonCtrl(Tosch);
+    Tosch.setMyView(view);
 }
 }
