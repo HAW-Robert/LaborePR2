@@ -1,3 +1,8 @@
+// Robert Arnds & Max Müller
+// Wirkleistungsrechner
+//21.06.26
+
+
 package Rechner;
 import java.awt.Container;
 

@@ -1,3 +1,8 @@
+// Robert Arnds & Max Müller
+// Personendaten
+//21.06.26
+
+
 package GUI;
 import javax.swing.*; //der .* sorgt dafür das alles in der BIBliotekh importiert wird 
 public class PersonView extends JFrame {

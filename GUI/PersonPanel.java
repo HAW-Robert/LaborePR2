@@ -1,3 +1,8 @@
+// Robert Arnds & Max Müller
+// Personendaten
+//21.06.26
+
+
 package GUI;
 import java.awt.Color;
 import java.awt.Font;
