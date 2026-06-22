@@ -4,11 +4,11 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Graphics;
+
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.AbstractButton;
+
 import javax.swing.ButtonGroup;
 
 import javax.swing.JFrame;
@@ -37,12 +37,13 @@ public class CalcControl extends JFrame implements ActionListener {
     private double phi;
     private double p;
     private JLabel Ergebnis;
+    private JLabel Entspricht;
 
     public CalcControl(){
         super("WirkleistungsRechner");
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Container c = getContentPane();
-    c.setLayout(new GridLayout(5, 5, 5,5));
+    c.setLayout(new GridLayout(6, 7, 6,6));
     c.setBackground(getBackground());
    
          
@@ -55,7 +56,7 @@ public class CalcControl extends JFrame implements ActionListener {
     JLabel ergebnis = new JLabel("Ergebnis :");
      Ergebnis = new JLabel(String.valueOf(p));
     JLabel entspricht = new JLabel("Entspricht :");
-    JLabel Entspricht = new JLabel();
+     Entspricht = new JLabel(String.valueOf(Rechner.umRechner(p)));
 
         //RadioButtons
     Bogenmaß = new JRadioButton("Bogenmaß", true);
@@ -110,10 +111,11 @@ public class CalcControl extends JFrame implements ActionListener {
 
    c.add(panel5);
 
-   // JPanel panel6 = new JPanel();
-   // panel5.add(entspricht);
+    JPanel panel6 = new JPanel();
+    panel6.add(entspricht);
+    panel6.add(Entspricht);
 
-   // c.add(panel6);
+    c.add(panel6);
 
      setSize(400, 300);    // größe des Fensters
 
@@ -133,6 +135,7 @@ public class CalcControl extends JFrame implements ActionListener {
    
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Wenn ok gedrückt wird werden sich erst die informationen aus dem fenster geholt
        if (e.getSource() == ok){
          präfixus = (String) präfix1.getSelectedItem();
         String Spannung = spannung.getText();
@@ -153,6 +156,7 @@ public class CalcControl extends JFrame implements ActionListener {
     if (!WinkelGRAD.isEmpty()) {
      winkelGrad = Double.parseDouble(WinkelGRAD);
     }
+    //Jetzt wird die wirkleistung berechnet
      p = Rechner.berechneWirkleistung(Volt,
         Ampere,
         winkelIn,
@@ -160,10 +164,12 @@ public class CalcControl extends JFrame implements ActionListener {
         phi,
         präfixus,
         präfixusMaximus);
-        Ergebnis.setText(String.format("%.2f W", p));
+        //Ergebnisse werden ins fenster aktualisiert 
+        Ergebnis.setText(String.format("%.7f W", p));
+        Entspricht.setText(String.format("%.7f mW", Rechner.umRechner(p)));
     // Kontrolle ob werte übernommen werden 
     System.out.println("========== DEBUG ==========");
-
+// Die print befehle dienen zur überprüfung des codes während des programmierens 
 System.out.println("Spannung:      " + Volt);
 System.out.println("Spannungspräfix: " + präfixus);
 

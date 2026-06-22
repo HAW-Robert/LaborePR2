@@ -9,7 +9,11 @@ public class Rechner {
     private String präfixusMaximus;
     private double phi;
 
-    
+    //Umrechnung von Wattauf mWatt
+    public static double umRechner(double p){
+        return p*1000;
+    }
+    //Meine wirkleistungsmethode
     public static double berechneWirkleistung(double Volt, double Ampere, int winkelIn, double WinkelGrad, double phi, String präfix, String präfixusMaximus){
         if (winkelIn == 1) {
             phi = Math.toRadians(WinkelGrad);
@@ -21,6 +25,7 @@ public class Rechner {
         }else if(präfix == "milli"){
             Volt = Volt*0.001;
         }else{
+            
             Volt = Volt;
         }
         if(präfixusMaximus == "Kilo"){
