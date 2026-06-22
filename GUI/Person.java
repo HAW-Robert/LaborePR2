@@ -1,19 +1,8 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-
+//Hier wird die Klasse des Objekts welches wir verändern wollen definiert.
+//Alle Attribute welche später verändert werden können müssen hier definiert werden.
 public class Person {
     private String adress;
     private String title;
@@ -28,7 +17,7 @@ public class Person {
         this.givenName = givenName;
         this.surname = surname;
     }
-
+    // Getter und setter sorgen dafür das ich durch code in anderen files trotzdem noch attribute von person ändern kann.
     //Getter 
     public String getAdress(){
         return adress;

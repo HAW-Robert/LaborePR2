@@ -6,7 +6,10 @@ public class PersonView extends JFrame {
 public PersonView(Person personToShow){
     //Mit super wird hier der JFrame konstruktor aufgerufen 
     super("Personal Infos");
-
+    // Hier wird ein Objekt (ein Panel) erzeugt mit personToShow als zu behandelndes objekt
+    //Wenn der konstruktor von PersonPanel aufgerufen wird , holt sich PersonPanel die Attribute von Person die wir vorher definiert haben.
+    //Hier werden diese Information an PersonView "Weitergegeben" bzw Weiter verwendet 
+    //Ohne PersonPanel aufruf wüsste PersonView nicht um wen es geht
    PersonPanel panel = new PersonPanel(personToShow);
    add(panel);
    
